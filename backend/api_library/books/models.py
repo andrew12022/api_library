@@ -73,6 +73,7 @@ class Book(NameAndSlugModel):
         null=True,
         blank=True,
         verbose_name='Описание',
+        help_text='Поле может быть пустым',
     )
     author = models.ForeignKey(
         Author,

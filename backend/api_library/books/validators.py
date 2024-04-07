@@ -4,6 +4,7 @@ from django.core.exceptions import ValidationError
 
 
 def validate_year_of_publication(value):
+    """Валидация для года публикации."""
     current_year = datetime.now().year
     min_year = 1900
     if value > current_year:
