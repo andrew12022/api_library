@@ -2,9 +2,8 @@ from django.core.validators import (MaxValueValidator, MinValueValidator,
                                     RegexValidator)
 from django.db import models
 
-from books.validators import validate_year_of_publication
-
 from api_library import constants
+from books.validators import validate_year_of_publication
 
 
 class NameAndSlugModel(models.Model):

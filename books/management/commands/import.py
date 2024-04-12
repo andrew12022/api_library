@@ -3,9 +3,8 @@ import os
 
 from django.core.management.base import BaseCommand, CommandError
 
-from books.models import Author, Book, Genre, Publisher, Series
-
 from api_library.settings import BASE_DIR
+from books.models import Author, Book, Genre, Publisher, Series
 
 FILE_PATH = os.path.join(
     BASE_DIR,
