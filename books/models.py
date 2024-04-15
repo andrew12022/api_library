@@ -25,7 +25,7 @@ class NameAndSlugModel(models.Model):
 class Author(NameAndSlugModel):
     """Модель для автора."""
     class Meta:
-        ordering = ['name']
+        ordering = ['-id']
         verbose_name = 'объект "Автор"'
         verbose_name_plural = 'Автора'
 
@@ -36,7 +36,7 @@ class Author(NameAndSlugModel):
 class Genre(NameAndSlugModel):
     """Модель для жанра."""
     class Meta:
-        ordering = ['name']
+        ordering = ['-id']
         verbose_name = 'объект "Жанр"'
         verbose_name_plural = 'Жанры'
 
@@ -47,7 +47,7 @@ class Genre(NameAndSlugModel):
 class Series(NameAndSlugModel):
     """Модель для серии."""
     class Meta:
-        ordering = ['name']
+        ordering = ['-id']
         verbose_name = 'объект "Серия"'
         verbose_name_plural = 'Серии'
 
@@ -58,7 +58,7 @@ class Series(NameAndSlugModel):
 class Publisher(NameAndSlugModel):
     """Модель для издательства."""
     class Meta:
-        ordering = ['name']
+        ordering = ['-id']
         verbose_name = 'объект "Издательство"'
         verbose_name_plural = 'Издательства'
 

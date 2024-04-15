@@ -18,6 +18,7 @@ INSTALLED_APPS = [
     'drf_yasg',
     'books.apps.BooksConfig',
     'api.apps.ApiConfig',
+    'users.apps.UsersConfig',
     'rest_framework',
 ]
 
