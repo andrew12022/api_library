@@ -107,14 +107,14 @@ class Book(NameAndSlugModel):
             MinValueValidator(
                 constants.MIN_VALIDATION_VALUE_OF_PAGE_COUNT,
                 (
-                    'Минимальное значение = '
+                    'Ошибка! Минимальное значение = '
                     f'{constants.MIN_VALIDATION_VALUE_OF_PAGE_COUNT}'
                 ),
             ),
             MaxValueValidator(
                 constants.MAX_VALIDATION_VALUE_OF_PAGE_COUNT,
                 (
-                    'Максимальное значение = '
+                    'Ошибка! Максимальное значение = '
                     f'{constants.MAX_VALIDATION_VALUE_OF_PAGE_COUNT}'
                 ),
             ),

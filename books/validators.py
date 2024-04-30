@@ -10,10 +10,10 @@ def validate_year_of_publication(value):
     if value > current_year:
         raise ValidationError(
             'Ошибка! '
-            f'Год публикации {value} не может быть больше {current_year}'
+            f'Год публикации {value} не может быть больше {current_year} года'
         )
     elif value < min_year:
         raise ValidationError(
             'Ошибка! '
-            f'Год публикации {value} не может быть меньше {min_year}'
+            f'Год публикации {value} не может быть меньше {min_year} года'
         )
