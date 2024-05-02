@@ -1,0 +1,6 @@
+email,first_name,last_name,middle_name,username,gender,date_of_birthday
+ivanov@mail.ru,Иван,Иванов,Иванович,ivan123,мужской,2000-01-01
+petrov@gmail.com,Петр,Петров,Петрович,petr321,мужской,1995-07-15
+smirnova@ya.ru,Мария,Смирнова,Ивановна,masha777,женский,1990-08-11
+kuznetsov@mail.ru,Александр,Кузнецов,Сергеевич,alex200,мужской,1975-04-05
+popova@gmail.com,Екатерина,Попова,Александровна,katya999,женский,1985-10-23

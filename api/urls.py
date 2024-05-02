@@ -3,10 +3,15 @@ from django.urls import include, path
 from rest_framework import routers
 
 from api.views import (AuthorViewSet, BookViewSet, GenreViewSet,
-                       PublisherViewSet, SeriesViewSet)
+                       PublisherViewSet, SeriesViewSet, UserViewSet)
 
 router_v1 = routers.DefaultRouter()
 
+router_v1.register(
+    'users',
+    UserViewSet,
+    basename='users',
+)
 router_v1.register(
     'authors',
     AuthorViewSet,

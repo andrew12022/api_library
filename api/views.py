@@ -1,8 +1,15 @@
 from rest_framework import viewsets
 
 from api.serializers import (AuthorSerializer, BookSerializer, GenreSerializer,
-                             PublisherSerializer, SeriesSerializer)
+                             PublisherSerializer, SeriesSerializer,
+                             UserSerializer)
 from books.models import Author, Book, Genre, Publisher, Series
+from users.models import User
+
+
+class UserViewSet(viewsets.ModelViewSet):
+    queryset = User.objects.all()
+    serializer_class = UserSerializer
 
 
 class AuthorViewSet(viewsets.ModelViewSet):
