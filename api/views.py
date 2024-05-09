@@ -1,4 +1,6 @@
+from djoser.views import UserViewSet
 from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
 
 from api.serializers import (AuthorSerializer, BookSerializer, GenreSerializer,
                              PublisherSerializer, SeriesSerializer,
@@ -7,7 +9,7 @@ from books.models import Author, Book, Genre, Publisher, Series
 from users.models import User
 
 
-class UserViewSet(viewsets.ModelViewSet):
+class UserViewSet(UserViewSet):
     queryset = User.objects.all()
     serializer_class = UserSerializer
 
@@ -15,6 +17,7 @@ class UserViewSet(viewsets.ModelViewSet):
 class AuthorViewSet(viewsets.ModelViewSet):
     queryset = Author.objects.all()
     serializer_class = AuthorSerializer
+    permission_classes = (IsAuthenticated,)
 
 
 class GenreViewSet(viewsets.ModelViewSet):

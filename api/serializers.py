@@ -1,13 +1,39 @@
+from djoser.serializers import UserCreateSerializer, UserSerializer
 from rest_framework import serializers
 
 from books.models import Author, Book, Genre, Publisher, Series
 from users.models import User
 
 
-class UserSerializer(serializers.ModelSerializer):
+class UserCreateSerializer(UserCreateSerializer):
     class Meta:
         model = User
-        fields = '__all__'
+        fields = (
+            'email',
+            'id',
+            'last_name',
+            'first_name',
+            'middle_name',
+            'username',
+            'gender',
+            'date_of_birthday',
+            'password',
+        )
+
+
+class UserSerializer(UserSerializer):
+    class Meta:
+        model = User
+        fields = (
+            'email',
+            'id',
+            'last_name',
+            'first_name',
+            'middle_name',
+            'username',
+            'gender',
+            'date_of_birthday',
+        )
 
 
 class AuthorSerializer(serializers.ModelSerializer):

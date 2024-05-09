@@ -15,11 +15,13 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework.authtoken',
+    'djoser',
     'drf_yasg',
     'books.apps.BooksConfig',
     'api.apps.ApiConfig',
     'users.apps.UsersConfig',
-    'rest_framework',
 ]
 
 MIDDLEWARE = [
@@ -74,6 +76,31 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+REST_FRAMEWORK = {
+    'DEFAULT_PERMISSION_CLASSES': [
+        'rest_framework.permissions.AllowAny',
+    ],
+
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ]
+}
+
+DJOSER = {
+    'HIDE_USERS': False,
+
+    'SERIALIZERS': {
+        'user_create': 'api.serializers.UserCreateSerializer',
+        'user': 'api.serializers.UserSerializer',
+        'current_user': 'api.serializers.UserSerializer',
+    },
+
+    'PERMISSIONS': {
+        'user': ['djoser.permissions.CurrentUserOrAdminOrReadOnly'],
+        'user_list': ['rest_framework.permissions.IsAuthenticatedOrReadOnly'],
+    },
+}
+
 LANGUAGE_CODE = 'ru-RU'
 
 TIME_ZONE = 'UTC'
@@ -87,3 +114,13 @@ STATIC_URL = 'static/'
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 AUTH_USER_MODEL = 'users.User'
+
+SWAGGER_SETTINGS = {
+    'SECURITY_DEFINITIONS': {
+        'Bearer': {
+            'type': 'apiKey',
+            'name': 'Authorization',
+            'in': 'header',
+        }
+    }
+}
