@@ -10,7 +10,6 @@ class UserCreateSerializer(UserCreateSerializer):
         model = User
         fields = (
             'email',
-            'id',
             'last_name',
             'first_name',
             'middle_name',
@@ -39,28 +38,51 @@ class UserSerializer(UserSerializer):
 class AuthorSerializer(serializers.ModelSerializer):
     class Meta:
         model = Author
-        fields = '__all__'
+        exclude = (
+            'slug',
+        )
 
 
 class GenreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Genre
-        fields = '__all__'
+        exclude = (
+            'slug',
+        )
 
 
 class SeriesSerializer(serializers.ModelSerializer):
     class Meta:
         model = Series
-        fields = '__all__'
+        exclude = (
+            'slug',
+        )
 
 
 class PublisherSerializer(serializers.ModelSerializer):
     class Meta:
         model = Publisher
-        fields = '__all__'
+        exclude = (
+            'slug',
+        )
 
 
 class BookSerializer(serializers.ModelSerializer):
+    author = serializers.StringRelatedField(
+        read_only=True,
+    )
+    genre = serializers.StringRelatedField(
+        read_only=True,
+    )
+    series = serializers.StringRelatedField(
+        read_only=True,
+    )
+    publisher = serializers.StringRelatedField(
+        read_only=True,
+    )
+
     class Meta:
         model = Book
-        fields = '__all__'
+        exclude = (
+            'slug',
+        )
