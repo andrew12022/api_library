@@ -1,7 +1,11 @@
+from django.shortcuts import get_object_or_404
+
 from djoser.serializers import UserCreateSerializer, UserSerializer
 from rest_framework import serializers
+from rest_framework.validators import UniqueTogetherValidator
 
-from books.models import Author, Book, Genre, Publisher, Series
+from books.models import (Author, Book, Favourites, Genre, Publisher, Review,
+                          Series)
 from users.models import User
 
 
@@ -67,6 +71,34 @@ class PublisherSerializer(serializers.ModelSerializer):
         )
 
 
+class ReviewSerializer(serializers.ModelSerializer):
+    author = serializers.SlugRelatedField(
+        read_only=True,
+        slug_field='username',
+    )
+    book = serializers.SlugRelatedField(
+        read_only=True,
+        slug_field='name',
+    )
+
+    class Meta:
+        model = Review
+        fields = '__all__'
+
+    def validate(self, value):
+        request = self.context['request']
+        get_object_or_404(
+            Book,
+            id=self.context['view'].kwargs['book_id'],
+        )
+        if (
+            request.method == 'POST'
+            and request.user.reviews.all().exists()
+        ):
+            raise serializers.ValidationError('Ваш отзыв уже есть!')
+        return value
+
+
 class BookSerializer(serializers.ModelSerializer):
     author = serializers.StringRelatedField(
         read_only=True,
@@ -80,9 +112,37 @@ class BookSerializer(serializers.ModelSerializer):
     publisher = serializers.StringRelatedField(
         read_only=True,
     )
+    reviews = serializers.StringRelatedField(
+        many=True,
+        read_only=True,
+    )
 
     class Meta:
         model = Book
         exclude = (
             'slug',
         )
+
+
+class FavouritesSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Favourites
+        fields = (
+            'user',
+            'book',
+        )
+        validators = [
+            UniqueTogetherValidator(
+                queryset=Favourites.objects.all(),
+                fields=('user', 'book'),
+                message='Книга уже добавлена!',
+            ),
+        ]
+
+    def to_representation(self, instance):
+        return BookSerializer(
+            instance.book,
+            context={
+                'request': self.context.get('request')
+            },
+        ).data

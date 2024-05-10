@@ -3,7 +3,8 @@ from django.urls import include, path
 from rest_framework import routers
 
 from api.views import (AuthorViewSet, BookViewSet, GenreViewSet,
-                       PublisherViewSet, SeriesViewSet, UserViewSet)
+                       PublisherViewSet, ReviewViewSet, SeriesViewSet,
+                       UserViewSet)
 
 router_v1 = routers.DefaultRouter()
 
@@ -36,6 +37,11 @@ router_v1.register(
     'books',
     BookViewSet,
     basename='books',
+)
+router_v1.register(
+    r'books/(?P<book_id>\d+)/reviews',
+    ReviewViewSet,
+    basename='reviews',
 )
 
 urlpatterns = [

@@ -1,6 +1,7 @@
 from django.contrib import admin
 
-from books.models import Author, Book, Genre, Publisher, Series
+from books.models import (Author, Book, Favourites, Genre, Publisher, Review,
+                          Series)
 
 admin.site.empty_value_display = 'Не задано'
 
@@ -64,10 +65,6 @@ class BookAdmin(admin.ModelAdmin):
         'publisher',
         'year_of_publication',
         'page_count',
-        'availability',
-    )
-    list_editable = (
-        'availability',
     )
     search_fields = (
         'name',
@@ -77,7 +74,6 @@ class BookAdmin(admin.ModelAdmin):
         'genre',
         'series',
         'publisher',
-        'availability',
     )
     raw_id_fields = (
         'author',
@@ -86,3 +82,17 @@ class BookAdmin(admin.ModelAdmin):
         'publisher',
     )
     prepopulated_fields = {'slug': ('name',)}
+
+
+@admin.register(Review)
+class ReviewAdmin(admin.ModelAdmin):
+    pass
+
+
+@admin.register(Favourites)
+class FavoriteAdmin(admin.ModelAdmin):
+    """Админ модель для избранных рецептов."""
+    list_display = (
+        'user',
+        'book',
+    )

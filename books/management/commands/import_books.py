@@ -77,7 +77,6 @@ class Command(BaseCommand):
                         year_of_publication=row['year_of_publication'],
                         page_count=row['page_count'],
                         isbn=row['isbn'],
-                        availability=row['availability'],
                     )
                 print('Файл book.csv успешно импортировал данные в БД')
 
