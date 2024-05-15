@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block title %}
+  Книги автора «{{ author.name }}»
+{% endblock %}
+{% block content %}
+<h1>Книги автора «{{ author.name }}»</h1>
+  <div class="row">
+    {% for book in page_obj %}
+      {% include "includes/book_card.html" %}
+    {% endfor %}
+  </div>
+{% include "includes/paginator.html" %}
+{% endblock %}

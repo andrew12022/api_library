@@ -86,13 +86,34 @@ class BookAdmin(admin.ModelAdmin):
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
-    pass
+    list_display = (
+        'text',
+        'pub_date',
+        'rating',
+        'author',
+        'book',
+    )
+    list_filter = (
+        'author',
+        'book',
+    )
+    raw_id_fields = (
+        'author',
+        'book',
+    )
 
 
 @admin.register(Favourites)
 class FavoriteAdmin(admin.ModelAdmin):
-    """Админ модель для избранных рецептов."""
     list_display = (
+        'user',
+        'book',
+    )
+    list_filter = (
+        'user',
+        'book',
+    )
+    raw_id_fields = (
         'user',
         'book',
     )

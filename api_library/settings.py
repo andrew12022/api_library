@@ -20,6 +20,7 @@ INSTALLED_APPS = [
     'djoser',
     'django_filters',
     'drf_yasg',
+    'django_bootstrap5',
     'books.apps.BooksConfig',
     'api.apps.ApiConfig',
     'users.apps.UsersConfig',
@@ -37,10 +38,12 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'api_library.urls'
 
+TEMPLATES_DIR = BASE_DIR / 'templates'
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
+        'DIRS': [TEMPLATES_DIR],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -87,7 +90,7 @@ REST_FRAMEWORK = {
     ],
 
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
-    'PAGE_SIZE': 5,
+    'PAGE_SIZE': 6,
 }
 
 DJOSER = {
@@ -128,3 +131,7 @@ SWAGGER_SETTINGS = {
         }
     }
 }
+
+STATICFILES_DIRS = [
+    BASE_DIR / 'static_dev',
+]

@@ -197,7 +197,9 @@ class Review(models.Model):
         ]
 
     def __str__(self):
-        return self.text
+        return (
+            f'{self.author} добавил отзыв на книгу "{self.book}"'
+        )
 
 
 class Favourites(models.Model):
@@ -227,5 +229,5 @@ class Favourites(models.Model):
 
     def __str__(self):
         return (
-            f'{self.user} добавил рецепт "{self.book}" в Избранное'
+            f'{self.user} добавил книгу "{self.book}" в Избранное'
         )
