@@ -1,9 +1,12 @@
 from django.contrib import admin
-from django.urls import include, path
+from django.urls import include, path, reverse_lazy
+from django.views.generic.edit import CreateView
 
 from drf_yasg import openapi
 from drf_yasg.views import get_schema_view
 from rest_framework import permissions
+
+from users.forms import UserCreationForm
 
 schema_view = get_schema_view(
     openapi.Info(
@@ -17,6 +20,16 @@ schema_view = get_schema_view(
 
 urlpatterns = [
     path('', include('books.urls', namespace='books')),
+    path('auth/', include('django.contrib.auth.urls')),
+    path(
+        'auth/registration/',
+        CreateView.as_view(
+            template_name='registration/registration_form.html',
+            form_class=UserCreationForm,
+            success_url=reverse_lazy('books:index'),
+        ),
+        name='registration',
+    ),
     path('admin/', admin.site.urls),
     path('api/', include('api.urls')),
 ]

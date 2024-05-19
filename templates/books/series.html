@@ -1,13 +1,6 @@
-{% extends "base.html" %}
-{% block title %}
-  Книги серии «{{ series.name }}»
-{% endblock %}
-{% block content %}
+{% extends "base.html" %} {% block title %} Книги серии «{{ series.name }}» {% endblock %} {% block content %}
 <h1>Книги серии «{{ series.name }}»</h1>
-  <div class="row">
-    {% for book in page_obj %}
-      {% include "includes/book_card.html" %}
-    {% endfor %}
-  </div>
-  {% include "includes/paginator.html" %}
-{% endblock %}
+<div class="row">
+  {% for book in page_obj %} {% include "includes/book_card.html" %} {% endfor %}
+</div>
+{% include "includes/paginator.html" %} {% endblock %}

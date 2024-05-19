@@ -135,3 +135,9 @@ SWAGGER_SETTINGS = {
 STATICFILES_DIRS = [
     BASE_DIR / 'static_dev',
 ]
+
+LOGIN_REDIRECT_URL = 'books:index'
+
+LOGIN_URL = 'login'
+
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
