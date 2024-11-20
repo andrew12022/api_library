@@ -5,8 +5,7 @@
       {% if '/edit_review/' in request.path %} Редактирование обзора {% else %} Удаление обзора {% endif %}
     </div>
     <div class="card-body">
-      <form method="post" {% if '/edit_review/' in request.path %} action="{% url 'books:edit_review' review.book_id review.id %}" {% endif %}> {% csrf_token %} {% if not '/delete_review/' in request.path %} {% bootstrap_form form %} {%
-      else %}
+      <form method="post" {% if '/edit_review/' in request.path %} action="{% url 'books:edit_review' review.book_id review.id %}" {% endif %}> {% csrf_token %} {% if not '/delete_review/' in request.path %} {% bootstrap_form form %}
       <p>{{ review.text }}</p>
       {% endif %} {% bootstrap_button button_type="submit" content="Отправить" %}
     </div>

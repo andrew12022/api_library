@@ -145,6 +145,7 @@ class Book(NameAndSlugModel):
 
 
 class Review(models.Model):
+    """Модель для обзора."""
     text = models.TextField(
         verbose_name='Текст отзыва',
     )
@@ -198,7 +199,7 @@ class Review(models.Model):
 
     def __str__(self):
         return (
-            f'{self.author} добавил отзыв на книгу "{self.book}"'
+            f'{self.author}: {self.text}. Оценка: {self.rating}'
         )
 
 

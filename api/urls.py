@@ -3,16 +3,10 @@ from django.urls import include, path
 from rest_framework import routers
 
 from api.views import (AuthorViewSet, BookViewSet, GenreViewSet,
-                       PublisherViewSet, ReviewViewSet, SeriesViewSet,
-                       UserViewSet)
+                       PublisherViewSet, SeriesViewSet)
 
 router_v1 = routers.DefaultRouter()
 
-router_v1.register(
-    'users',
-    UserViewSet,
-    basename='users',
-)
 router_v1.register(
     'authors',
     AuthorViewSet,
@@ -21,7 +15,7 @@ router_v1.register(
 router_v1.register(
     'genres',
     GenreViewSet,
-    basename='genrts',
+    basename='genres',
 )
 router_v1.register(
     'series',
@@ -38,14 +32,7 @@ router_v1.register(
     BookViewSet,
     basename='books',
 )
-router_v1.register(
-    r'books/(?P<book_id>\d+)/reviews',
-    ReviewViewSet,
-    basename='reviews',
-)
 
 urlpatterns = [
     path('', include(router_v1.urls)),
-    path('', include('djoser.urls')),
-    # path('auth/', include('djoser.urls.authtoken')),
 ]
