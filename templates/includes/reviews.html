@@ -1,0 +1,27 @@
+{% if user.is_authenticated %} {% load django_bootstrap5 %}
+<h5 class="mb-4">Оставить обзор</h5>
+<form method="post" action="{% url 'books:add_review' book.id %}">
+  {% csrf_token %} {% bootstrap_form form %} {% bootstrap_button button_type="submit" content="Отправить" %}
+</form>
+{% endif %}
+<br>
+{% for review in reviews %}
+<div class="media mb-4">
+	<div class="media-body">
+		<h5 class="mt-0">
+			{{ review.author.username }}
+		</h5>
+		<small class="text-muted">{{ review.pub_date }}</small>
+		<br />
+		{{ review.text|linebreaksbr }}
+		<h6 class="mt-0">
+			Оценка: {{ review.rating }} {% if user == review.author %}
+			<a class="btn btn-sm text-muted" href="{% url 'books:edit_review' book.id review.id %}" role="button">
+				Отредактировать обзор
+			</a>
+			<a class="btn btn-sm text-muted" href="{% url 'books:delete_review' book.id review.id %}" role="button">
+				Удалить обзор
+			</a>
+    {% endif %}
+  </div>
+{% endfor %}
