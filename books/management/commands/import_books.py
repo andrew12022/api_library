@@ -18,7 +18,7 @@ class Command(BaseCommand):
         try:
 
             with open(
-                os.path.join(FILE_PATH, 'author.csv')
+                os.path.join(FILE_PATH, 'author.csv'), encoding='utf-8'
             ) as file_csv:
                 data = csv.DictReader(file_csv, delimiter=',')
                 for row in data:
@@ -29,7 +29,7 @@ class Command(BaseCommand):
                 print('Файл author.csv успешно импортировал данные в БД')
 
             with open(
-                os.path.join(FILE_PATH, 'genre.csv')
+                os.path.join(FILE_PATH, 'genre.csv'), encoding='utf-8'
             ) as file_csv:
                 data = csv.DictReader(file_csv, delimiter=',')
                 for row in data:
@@ -40,7 +40,7 @@ class Command(BaseCommand):
                 print('Файл genre.csv успешно импортировал данные в БД')
 
             with open(
-                os.path.join(FILE_PATH, 'series.csv')
+                os.path.join(FILE_PATH, 'series.csv'), encoding='utf-8'
             ) as file_csv:
                 data = csv.DictReader(file_csv, delimiter=',')
                 for row in data:
@@ -51,7 +51,7 @@ class Command(BaseCommand):
                 print('Файл series.csv успешно импортировал данные в БД')
 
             with open(
-                os.path.join(FILE_PATH, 'publisher.csv')
+                os.path.join(FILE_PATH, 'publisher.csv'), encoding='utf-8'
             ) as file_csv:
                 data = csv.DictReader(file_csv, delimiter=',')
                 for row in data:
@@ -62,7 +62,7 @@ class Command(BaseCommand):
                 print('Файл publisher.csv успешно импортировал данные в БД')
 
             with open(
-                os.path.join(FILE_PATH, 'book.csv')
+                os.path.join(FILE_PATH, 'book.csv'), encoding='utf-8'
             ) as file_csv:
                 data = csv.DictReader(file_csv, delimiter=',')
                 for row in data:
