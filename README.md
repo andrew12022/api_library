@@ -96,10 +96,10 @@ python manage.py runserver
 Документация Redoc находится по адресу: http://127.0.0.1:8000/redoc/
 
 ## Технологии и необходимые инструменты
-- Python 3.12
-- Django 4.1.13
-- DRF
-- sqlite3
+- Python
+- Django
+- Django REST framework
+- SQLite
 
 ## Автор
 - [Андрей Елистратов](https://github.com/andrew12022)
